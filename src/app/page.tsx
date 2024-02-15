@@ -1,5 +1,10 @@
+"use client";
+
 import Table from "@/components/Table";
 import { DraftRankingResponse, Player, Players } from "@/types.interface";
+import { getDraftRankings } from "@/utils/fantasyNerdsApiUtils";
+import { useEffect, useState } from "react";
+import useAsyncEffect from "use-async-effect";
 
 const testRankings = [
   {
@@ -39,7 +44,14 @@ const mapDraftRankingResponse = (rankings: DraftRankingResponse): Players => {
 };
 
 export default function Home() {
-  const players = mapDraftRankingResponse(testRankings);
+  const [players, setPlayers] = useState<Players>([]);
+
+  useAsyncEffect(async () => {
+    const rankings = await getDraftRankings();
+    console.log("rankings", rankings);
+    const mappedRankings = mapDraftRankingResponse(rankings);
+    setPlayers(mappedRankings);
+  }, []);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
