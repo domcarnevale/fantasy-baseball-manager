@@ -1,11 +1,11 @@
 import { Players } from "@/types.interface";
-import TableRow from "./TableRow";
+import OverallTableRow from "./OverallTableRow";
 
-interface TableRowProps {
+interface OverallTableRowProps {
   players: Players;
 }
 
-const Table = ({ players }: TableRowProps) => {
+const OverallTable = ({ players }: OverallTableRowProps) => {
   return (
     <table className="min-w-full text-left text-sm font-light">
       <thead className="border-b bg-neutral-50 font-medium dark:border-neutral-500 dark:text-neutral-800">
@@ -23,7 +23,7 @@ const Table = ({ players }: TableRowProps) => {
             PLAYER
           </th>
           <th scope="col" className="px-6 py-4">
-            ALT POS
+            POS RANK
           </th>
           <th scope="col" className="px-6 py-4">
             TEAM
@@ -35,7 +35,7 @@ const Table = ({ players }: TableRowProps) => {
       </thead>
       <tbody>
         {players.map((player) => (
-          <TableRow
+          <OverallTableRow
             key={player.playerId}
             name={player.name}
             team={player.team}
@@ -50,4 +50,4 @@ const Table = ({ players }: TableRowProps) => {
   );
 };
 
-export default Table;
+export default OverallTable;

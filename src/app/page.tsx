@@ -1,6 +1,7 @@
 "use client";
 
-import Table from "@/components/Table";
+import OverallTable from "@/components/OverallTable";
+import PositionTable from "@/components/PositionTable";
 import { DraftRankingResponse, Player, Players } from "@/types.interface";
 import { getDraftRankings } from "@/utils/fantasyNerdsApiUtils";
 import { useEffect, useState } from "react";
@@ -48,7 +49,6 @@ export default function Home() {
 
   useAsyncEffect(async () => {
     const rankings = await getDraftRankings();
-    console.log("rankings", rankings);
     const mappedRankings = mapDraftRankingResponse(rankings);
     setPlayers(mappedRankings);
   }, []);
@@ -57,7 +57,11 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div>
         <h1>Fantasy Baseball Manager</h1>
-        <Table players={players} />
+        {false ? (
+          <OverallTable players={players} />
+        ) : (
+          <PositionTable players={players} />
+        )}
       </div>
     </main>
   );

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Checkbox from "./Checkbox";
 
-interface TableRowProps {
+interface OverallTableRowProps {
   name: string;
   team: string;
   position: string;
@@ -12,14 +12,14 @@ interface TableRowProps {
   isDrafted: boolean;
 }
 
-const TableRow = ({
+const OverallTableRow = ({
   name,
   team,
   position,
   rank,
   rankPosition,
   isDrafted,
-}: TableRowProps) => {
+}: OverallTableRowProps) => {
   const [isBlurred, setIsBlurred] = useState(isDrafted);
 
   const handleCheckBoxChange = () => setIsBlurred(!isBlurred);
@@ -43,4 +43,4 @@ const TableRow = ({
   );
 };
 
-export default TableRow;
+export default OverallTableRow;
